@@ -15,7 +15,7 @@ from .forms import RegistroUsuarioForm, RegistroPerfilForm
 from .templatetags.custom_filters import formatear_dinero, formatear_numero
 from .tools import eliminar_registro, verificar_eliminar_registro, show_form_errors
 from django.core.mail import send_mail
-
+from .models import Producto
 # *********************************************************************************************************#
 #                                                                                                          #
 # INSTRUCCIONES PARA EL ALUMNO, PUEDES SEGUIR EL VIDEO TUTORIAL, COMPLETAR EL CODIGO E INCORPORAR EL TUYO: #
@@ -27,6 +27,22 @@ from django.core.mail import send_mail
 # Se usará el decorador "@user_passes_test" para realizar la autorización básica a las páginas.
 # De este modo sólo entrarán a las páginas las personas que sean del tipo_usuario permitido.
 # Si un usuario no autorizado intenta entrar a la página, será redirigido al inicio o a ingreso
+
+def inicio(request):
+    productos = Producto.objects.all().order_by('nombre')
+    data = { 'productos':productos }
+    return render(request,"core/inicio.html",data)
+
+def ficha(request,producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    data = { 'producto':producto }
+    return render(request,"core/ficha.html",data)
+
+
+
+
+
+
 
 # Revisar si el usuario es personal de la empresa (staff administrador o superusuario) autenticado y con cuenta activa
 def es_personal_autenticado_y_activo(user):

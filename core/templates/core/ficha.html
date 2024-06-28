@@ -3,37 +3,62 @@
 {% load custom_filters %}
 
 {% block content %}
-
-<div class="instrucciones-para-el-alumno">
-    INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-    - PONE EL CODIGO HTML DE TU FICHA <br>
-    - USA LOS CAMPOS DE TU FICHA  <br>
-    - SI QUIERES PUEDES USAR EL LOS CAMPOS QUE SE TE ENTREGA <br>
-  </div>
-
     <form method="post" id="formulario-ficha">
+        <br><br>
 
-        {% csrf_token %}
+    <h1>Ficha de producto</h1>
+    
+    <br><br>
 
-        <div>
-        {{ imagen }} <br>
-        {{ nombre }} <br>
-        {{ html_estado|safe }}  <br>
-        {{ html_precio|safe }}  <br>
-        {{ descripcion }}  <br>
-        {{ html_stock|safe }}  <br>
+    <div class="container">
+        <div class="row">
+
+            <!-- Recuadro imagen de juego -->
+            <div class="col-sm-6 col-md-6">
+                <div class="container">
+                    <img src="/media/{{ producto.imagen }}" width="80%">
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="card" style="width: 60rem auto;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 30px; font-weight: bold;">
+                            {{ producto.nombre }}
+                        </h5>
+                        <br>
+                        <p class="card-text">
+                          <p style="color: green; font-weight: bolder;">
+                            {{ html_estado|safe }}
+                        </p>
+                          <p style="font-weight: bold;">
+                            {{ html_precio|safe }} 
+                        </p>
+                          <p style="color: red; font-weight: bold;">
+                            Descuento suscriptor: $6.000
+                        </p>
+                          <br>
+                          <p>Descripción: </p>
+                          {{ descripcion }}
+                          <br>
+                          
+                          <p style="font-weight: bold; color: gray;">{{ html_stock|safe }}</p>
+                        </p>
+                      </div>
+                </div>
+
+                <br>
+
+                <button type="submit" class="btn btn-success">
+                    Comprar Ahora
+                </button>
+
+                <button type="submit" class="btn btn-secondary">
+                    Añadir al carrito
+                </button>
+                
+            </div> 
         </div>
-        
-        <div>
-            <input type="hidden" id="accion">
-            <a href="{% url 'comprar_ahora' %}" class="btn btn-primary ancho-160px"> 
-                Comprar ahora 
-            </a>
-            <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-secondary ancho-160px"> 
-                Agregar al carrito 
-            </a>
-        </div>
-    </form>
+
 
 {% endblock content %}
 
