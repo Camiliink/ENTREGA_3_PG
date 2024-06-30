@@ -15,7 +15,7 @@ from .forms import RegistroUsuarioForm, RegistroPerfilForm
 from .templatetags.custom_filters import formatear_dinero, formatear_numero
 from .tools import eliminar_registro, verificar_eliminar_registro, show_form_errors
 from django.core.mail import send_mail
-from .models import Producto
+
 # *********************************************************************************************************#
 #                                                                                                          #
 # INSTRUCCIONES PARA EL ALUMNO, PUEDES SEGUIR EL VIDEO TUTORIAL, COMPLETAR EL CODIGO E INCORPORAR EL TUYO: #
@@ -27,22 +27,6 @@ from .models import Producto
 # Se usará el decorador "@user_passes_test" para realizar la autorización básica a las páginas.
 # De este modo sólo entrarán a las páginas las personas que sean del tipo_usuario permitido.
 # Si un usuario no autorizado intenta entrar a la página, será redirigido al inicio o a ingreso
-
-def inicio(request):
-    productos = Producto.objects.all().order_by('nombre')
-    data = { 'productos':productos }
-    return render(request,"core/inicio.html",data)
-
-def ficha(request,producto_id):
-    producto = Producto.objects.get(id=producto_id)
-    data = { 'producto':producto }
-    return render(request,"core/ficha.html",data)
-
-
-
-
-
-
 
 # Revisar si el usuario es personal de la empresa (staff administrador o superusuario) autenticado y con cuenta activa
 def es_personal_autenticado_y_activo(user):
@@ -59,10 +43,7 @@ def es_cliente_autenticado_y_activo(user):
 def inicio(request):
 
     if request.method == 'POST':
-        # Si la vista fue invocada con un POST es porque el usuario presionó el botón "Buscar" en la página principal.
-        # Por lo anterior, se va a recuperar palabra clave del formulario que es el campo "buscar" (id="buscar"), 
-        # que se encuentra en la página Base.html. El formulario de búsqueda se encuentra bajo el comentario 
-        # "FORMULARIO DE BUSQUEDA" en la página Base.html.
+
         buscar = request.POST.get('buscar')
 
         # Se filtrarán todos los productos que contengan la palabra clave en el campo nombre
@@ -72,9 +53,7 @@ def inicio(request):
         # Si la vista fue invocada con un GET, se devolverán todos los productos a la PAGINA
         registros = Producto.objects.all().order_by('nombre')
 
-    # Como los productos tienen varios cálculos de descuentos por ofertas y subscripción, estos se realizarán
-    # en una función a parte llamada "obtener_info_producto", mediante la cuál se devolverán las filas de los
-    # productos, pero con campos nuevos donde los cálculos ya han sido realizados.
+
     productos = []
     for registro in registros:
         productos.append(obtener_info_producto(registro.id))

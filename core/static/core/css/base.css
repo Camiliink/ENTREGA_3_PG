@@ -1,6 +1,3 @@
-@import "core\static\core\css\page-layout.css";
-@import "core\static\core\css\style.css";
-
 .logo-menu-superior {
     height: 40px;
 }
@@ -122,6 +119,3 @@
     margin: 4px;
     /* display: none; */
 }
-
-
-
