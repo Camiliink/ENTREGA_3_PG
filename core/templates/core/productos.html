@@ -8,10 +8,6 @@
 
     {% csrf_token %}
 
-    <div class="instrucciones-para-el-alumno">
-      INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-      - Construye tu formulario, pero puedes usar los campos sugeridos. <br>
-    </div>
 
     form.categoria|as_bootstrap_field <br>
     form.nombre|as_bootstrap_field <br>
@@ -21,7 +17,6 @@
     form.descuento_subscriptor|as_bootstrap_field  <br>
     form.descuento_oferta|as_bootstrap_field  <br>
 
-    <!-- AREA DE CUADRO DE IMAGEN: Imagen del producto (VER COMENTARIO "CUADRO DE IMAGEN" en script.js) -->
     {% if form.imagen.value %}
       <img id="cuadro-imagen" src="/media/{{ form.imagen.value }}">
     {% else %}

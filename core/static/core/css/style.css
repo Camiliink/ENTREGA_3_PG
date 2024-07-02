@@ -1,15 +1,15 @@
-h1 {
+/* h1 {
   font-size: x-large;
   color: blue !important;
   font-weight: bolder;
   margin-bottom: 20px;
   text-align: center;
-}
+} */
 
-th {
+/* th {
   vertical-align: top;
   background-color: lightgray !important;
-}
+} */
 
 input, textarea, select {
   border-color: darkgray !important; /* Cambia "red" al color deseado */
@@ -20,9 +20,8 @@ input, textarea, select {
   border: 1px solid blue;
 } */
 
-
-.body{
-  background-color: rgb(206, 189, 221);
+body{
+  background-color: rgb(218, 208, 227);
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -79,19 +78,21 @@ h3{
   font-size: 20px;
 }
 
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
-.custom-footer{
+footer{
   position: 0;
   bottom: 0;
   right: 25%;
   left: 25%;
 }
-
+/* div{
+  height: 100%;
+} */
 
 #boleta_tabla_estados {
   float: right;
@@ -117,7 +118,4 @@ h3{
   left: 1%;
   top: 65%;
   z-index: 100;
-}
-.error {
-  color: red;
 }
